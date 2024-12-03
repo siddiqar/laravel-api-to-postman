@@ -12,7 +12,8 @@ class ExportPostmanCommand extends Command
     /** @var string */
     protected $signature = 'export:postman
                             {--bearer= : The bearer token to use on your endpoints}
-                            {--basic= : The basic auth to use on your endpoints}';
+                            {--basic= : The basic auth to use on your endpoints}
+                            {--hoppscotch : Hoppscotch variable compatibility}';
 
     /** @var string */
     protected $description = 'Automatically generate a Postman collection for your API routes';
@@ -30,6 +31,8 @@ class ExportPostmanCommand extends Command
             'token' => $this->option('bearer') ?? $this->option('basic') ?? null,
         ]);
 
+        config()->set('api-postman.hoppscotch', $this->option('hoppscotch'));
+
         $exporter
             ->to($filename)
             ->setAuthentication(value(function () {
@@ -46,8 +49,8 @@ class ExportPostmanCommand extends Command
             ->export();
 
         Storage::disk(config('api-postman.disk'))
-            ->put('postman/'.$filename, $exporter->getOutput());
+            ->put('postman/' . $filename, $exporter->getOutput());
 
-        $this->info('Postman Collection Exported: '.storage_path('app/postman/'.$filename));
+        $this->info('Postman Collection Exported: ' . storage_path('app/postman/' . $filename));
     }
 }

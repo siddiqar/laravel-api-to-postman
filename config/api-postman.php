@@ -184,4 +184,15 @@ return [
         'disable_body_pruning' => false,  // Control request body pruning for following methods: GET, COPY, HEAD, PURGE, UNLOCK
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Hoppscotch
+    |--------------------------------------------------------------------------
+    |
+    | If you want to use hoppscotch variable compatibility, set this to true.
+    |
+    */
+
+    'hoppscotch' => false,
+
 ];

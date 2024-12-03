@@ -56,7 +56,7 @@ class RouteProcessor
     protected function processRoute(Route $route)
     {
         try {
-            $methods = array_filter($route->methods(), fn ($value) => $value !== 'HEAD');
+            $methods = array_filter($route->methods(), fn($value) => $value !== 'HEAD');
             $middlewares = $route->gatherMiddleware();
 
             foreach ($methods as $method) {
@@ -84,7 +84,7 @@ class RouteProcessor
                     $routeHeaders[] = $this->authentication->toArray();
                 }
 
-                $uri = Str::of($route->uri())->replaceMatches('/{([[:alnum:]_]+)}/', ':$1');
+                $uri = Str::of($route->uri())->replaceMatches('/{([a-zA-Z0-9_]+)\??}/', $this->config['hoppscotch'] ? '<<$1>>' : ':$1');
 
                 if ($this->config['include_doc_comments']) {
                     $description = (new DocBlockProcessor)($reflectionMethod);
@@ -110,9 +110,9 @@ class RouteProcessor
                 if ($this->config['structured']) {
                     $routeNameSegments = (
                         $route->getName()
-                            ? Str::of($route->getName())->explode('.')
-                            : Str::of($route->uri())->after('api/')->explode('/')
-                    )->filter(fn ($value) => ! is_null($value) && $value !== '');
+                        ? Str::of($route->getName())->explode('.')
+                        : Str::of($route->uri())->after('api/')->explode('/')
+                    )->filter(fn($value) => ! is_null($value) && $value !== '');
 
                     if (! $this->config['crud_folders']) {
                         if (in_array($routeNameSegments->last(), ['index', 'store', 'show', 'update', 'destroy'])) {
@@ -126,7 +126,7 @@ class RouteProcessor
                 }
             }
         } catch (\Exception $e) {
-            Log::warning('Failed to process route: '.$route->uri());
+            Log::warning('Failed to process route: ' . $route->uri());
         }
     }
 
@@ -140,11 +140,11 @@ class RouteProcessor
                 ->values()
                 ->all(),
             'url' => [
-                'raw' => '{{base_url}}/'.$uri,
+                'raw' => '{{base_url}}/' . $uri,
                 'host' => ['{{base_url}}'],
                 'path' => $uri->explode('/')->filter()->all(),
                 'variable' => $uri
-                    ->matchAll('/(?<={)[[:alnum:]]+(?=})/m')
+                    ->matchAll($this->config['hoppscotch'] ? '/(?<=<<)[a-zA-Z0-9_]+(?=>>)/m' : '/(?<=:)[a-zA-Z0-9_]+/m')
                     ->transform(function ($variable) {
                         return ['key' => $variable, 'value' => ''];
                     })
@@ -156,7 +156,7 @@ class RouteProcessor
                     return $collection;
                 }
 
-                $rules->transform(fn ($rule) => [
+                $rules->transform(fn($rule) => [
                     'key' => $rule['name'],
                     'value' => $this->config['formdata'][$rule['name']] ?? null,
                     'description' => $this->config['print_rules'] ? $this->parseRulesIntoHumanReadable($rule['name'], $rule['description']) : null,
@@ -165,14 +165,14 @@ class RouteProcessor
                 if ($method === 'GET') {
                     return $collection->mergeRecursive([
                         'url' => [
-                            'query' => $rules->map(fn ($value) => array_merge($value, ['disabled' => false])),
+                            'query' => $rules->map(fn($value) => array_merge($value, ['disabled' => false])),
                         ],
                     ]);
                 }
 
                 return $collection->put('body', [
                     'mode' => 'urlencoded',
-                    'urlencoded' => $rules->map(fn ($value) => array_merge($value, ['type' => 'text'])),
+                    'urlencoded' => $rules->map(fn($value) => array_merge($value, ['type' => 'text'])),
                 ]);
             })
             ->all();
