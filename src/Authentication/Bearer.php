@@ -1,6 +1,6 @@
 <?php
 
-namespace AndreasElia\PostmanGenerator\Authentication;
+namespace Siddiqar\PostmanGenerator\Authentication;
 
 class Bearer extends AuthenticationMethod
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace AndreasElia\PostmanGenerator\Commands;
+namespace Siddiqar\PostmanGenerator\Commands;
 
-use AndreasElia\PostmanGenerator\Exporter;
+use Siddiqar\PostmanGenerator\Exporter;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -37,11 +37,11 @@ class ExportPostmanCommand extends Command
             ->to($filename)
             ->setAuthentication(value(function () {
                 if (filled($this->option('bearer'))) {
-                    return new \AndreasElia\PostmanGenerator\Authentication\Bearer($this->option('bearer'));
+                    return new \Siddiqar\PostmanGenerator\Authentication\Bearer($this->option('bearer'));
                 }
 
                 if (filled($this->option('basic'))) {
-                    return new \AndreasElia\PostmanGenerator\Authentication\Basic($this->option('basic'));
+                    return new \Siddiqar\PostmanGenerator\Authentication\Basic($this->option('basic'));
                 }
 
                 return null;

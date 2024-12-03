@@ -1,6 +1,6 @@
 <?php
 
-namespace AndreasElia\PostmanGenerator\Tests\Fixtures;
+namespace Siddiqar\PostmanGenerator\Tests\Fixtures;
 
 trait CollectionHelpersTrait
 {

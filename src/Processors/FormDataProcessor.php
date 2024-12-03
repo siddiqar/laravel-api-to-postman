@@ -1,6 +1,6 @@
 <?php
 
-namespace AndreasElia\PostmanGenerator\Processors;
+namespace Siddiqar\PostmanGenerator\Processors;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Collection;
@@ -40,7 +40,7 @@ class FormDataProcessor
 
                 if (is_array($rule) && in_array('confirmed', $rule)) {
                     $rules->push([
-                        'name' => $fieldName.'_confirmation',
+                        'name' => $fieldName . '_confirmation',
                         'description' => $printRules ? $rule : '',
                     ]);
                 }

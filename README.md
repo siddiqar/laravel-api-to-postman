@@ -1,6 +1,6 @@
 ![Laravel API to Postman Header](/header.png)
 
-[![Latest Stable Version](https://poser.pugx.org/andreaselia/laravel-api-to-postman/v)](//packagist.org/packages/andreaselia/laravel-api-to-postman)
+[![Latest Stable Version](https://poser.pugx.org/siddiqar/laravel-api-to-postman/v)](//packagist.org/packages/siddiqar/laravel-api-to-postman)
 [![StyleCI](https://github.styleci.io/repos/323709695/shield?branch=master)](https://github.styleci.io/repos/323709695?branch=master)
 
 # Laravel API to Postman
@@ -17,13 +17,13 @@ The generator works for the latest version of the Postman Schema at the time of 
 Install the package:
 
 ```bash
-composer require andreaselia/laravel-api-to-postman
+composer require siddiqar/laravel-api-to-postman
 ```
 
 Publish the config file:
 
 ```bash
-php artisan vendor:publish --provider="AndreasElia\PostmanGenerator\PostmanGeneratorServiceProvider" --tag="postman-config"
+php artisan vendor:publish --provider="Siddiqar\PostmanGenerator\PostmanGeneratorServiceProvider" --tag="postman-config"
 ```
 
 ## Configuration

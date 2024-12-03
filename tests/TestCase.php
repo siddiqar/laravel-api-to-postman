@@ -1,15 +1,15 @@
 <?php
 
-namespace AndreasElia\PostmanGenerator\Tests;
+namespace Siddiqar\PostmanGenerator\Tests;
 
-use AndreasElia\PostmanGenerator\Tests\Fixtures\AuditLogController;
-use AndreasElia\PostmanGenerator\Tests\Fixtures\ExampleController;
+use Siddiqar\PostmanGenerator\Tests\Fixtures\AuditLogController;
+use Siddiqar\PostmanGenerator\Tests\Fixtures\ExampleController;
 
 class TestCase extends \Orchestra\Testbench\TestCase
 {
     protected function getPackageProviders($app)
     {
-        return ['AndreasElia\PostmanGenerator\PostmanGeneratorServiceProvider'];
+        return ['Siddiqar\PostmanGenerator\PostmanGeneratorServiceProvider'];
     }
 
     protected function defineRoutes($router)

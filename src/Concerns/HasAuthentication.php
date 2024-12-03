@@ -1,8 +1,8 @@
 <?php
 
-namespace AndreasElia\PostmanGenerator\Concerns;
+namespace Siddiqar\PostmanGenerator\Concerns;
 
-use AndreasElia\PostmanGenerator\Authentication\AuthenticationMethod;
+use Siddiqar\PostmanGenerator\Authentication\AuthenticationMethod;
 use Illuminate\Support\Str;
 
 trait HasAuthentication
@@ -14,7 +14,7 @@ trait HasAuthentication
         $config = $this->config['authentication'];
 
         if ($config['method']) {
-            $className = Str::of('AndreasElia\\PostmanGenerator\\Authentication\\')
+            $className = Str::of('Siddiqar\\PostmanGenerator\\Authentication\\')
                 ->append(ucfirst($config['method']))
                 ->toString();
 

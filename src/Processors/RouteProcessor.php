@@ -1,8 +1,8 @@
 <?php
 
-namespace AndreasElia\PostmanGenerator\Processors;
+namespace Siddiqar\PostmanGenerator\Processors;
 
-use AndreasElia\PostmanGenerator\Concerns\HasAuthentication;
+use Siddiqar\PostmanGenerator\Concerns\HasAuthentication;
 use Closure;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\Validation\Rule;

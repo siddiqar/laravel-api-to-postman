@@ -1,6 +1,6 @@
 <?php
 
-namespace AndreasElia\PostmanGenerator\Processors;
+namespace Siddiqar\PostmanGenerator\Processors;
 
 use Illuminate\Support\Str;
 use PHPStan\PhpDocParser\Ast\PhpDoc\PhpDocTextNode;
@@ -29,7 +29,7 @@ class DocBlockProcessor
 
             foreach ($phpDocNode->children as $child) {
                 if ($child instanceof PhpDocTextNode) {
-                    $description .= ' '.$child->text;
+                    $description .= ' ' . $child->text;
                 }
             }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace AndreasElia\PostmanGenerator\Authentication;
+namespace Siddiqar\PostmanGenerator\Authentication;
 
 class Basic extends AuthenticationMethod
 {

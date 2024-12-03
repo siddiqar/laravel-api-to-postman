@@ -1,9 +1,9 @@
 <?php
 
-namespace AndreasElia\PostmanGenerator;
+namespace Siddiqar\PostmanGenerator;
 
-use AndreasElia\PostmanGenerator\Concerns\HasAuthentication;
-use AndreasElia\PostmanGenerator\Processors\RouteProcessor;
+use Siddiqar\PostmanGenerator\Concerns\HasAuthentication;
+use Siddiqar\PostmanGenerator\Processors\RouteProcessor;
 use Illuminate\Contracts\Config\Repository;
 
 class Exporter
